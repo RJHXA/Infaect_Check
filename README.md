@@ -18,4 +18,4 @@ Formed by students from the 2nd period of the design and computer science course
 ## Soluction ##
 
 ## Logo ##
-<div><img height="50em" padding="80px" src="/imagem/logo.png" /></div>
+<div><img height="50em" padding-left="80px" src="/imagem/logo.png" /></div>
