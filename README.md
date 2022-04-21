@@ -12,6 +12,7 @@ Formed by students from the 2nd period of the design and computer science course
 - Julio Cesar;
 - Lucas Gusmão;
 - Luís Gustavo;
+- Matheus Soares;
 - Rafael Alves;
 - Rafael Menezes;
 
