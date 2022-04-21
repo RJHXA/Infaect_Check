@@ -5,7 +5,7 @@ Long before the invention of computers and the internet, fake news were transmit
 Formed by students from the 2nd period of the design and computer science courses, the Infæct Check team developed the project that serves the function of understanding the main bureaucratic and technical obstacles in the process of quality and safe information for the control of epidemics and pandemics.
 ### Design ###
 - Arthur Pirajá;
-- Camili Meideiros;
+- Camili Medeiros;
 - Eduarda Costa;
 ### Computer Science ###
 - André Felipe;
@@ -17,7 +17,7 @@ Formed by students from the 2nd period of the design and computer science course
 - Rafael Menezes;
 
 ## Soluction ##
-
+The Team's soluction for the problem introduced is a sistem that has a database of keywords   
 <div style="display: inline_block">
     <img align="right" height="50em" src="/imagem/logo.png" />
 </div>
