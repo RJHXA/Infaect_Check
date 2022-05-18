@@ -105,6 +105,14 @@ class Whatsapp:
             pt.moveTo(position, duration= self.speed)
             pt.click(interval= self.click_speed)
 
+            position = pt.locateCenterOnScreen('images/links.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
+
+            pt.hotkey("ctrl", "a")
+            pt.hotkey("ctrl", "c")
+
+
         except Exception as e:
             print("Exception (nav_messageBox_Fake): ", e)
 
