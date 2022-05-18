@@ -100,18 +100,6 @@ class Whatsapp:
             pt.typewrite("Fique ligado nesses seguinte links para evitar compartilhamento de Fake News:", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
-            
-            position = pt.locateCenterOnScreen('images/vsCode.png', confidence=0.7)
-            pt.moveTo(position, duration= self.speed)
-            pt.click(interval= self.click_speed)
-
-            position = pt.locateCenterOnScreen('images/links.png', confidence=0.7)
-            pt.moveTo(position, duration= self.speed)
-            pt.click(interval= self.click_speed)
-
-            pt.hotkey("ctrl", "a")
-            pt.hotkey("ctrl", "c")
-
 
         except Exception as e:
             print("Exception (nav_messageBox_Fake): ", e)
@@ -139,22 +127,68 @@ class Whatsapp:
             pt.typewrite("Fique ligado nesses seguinte links para evitar compartilhamento de Fake News:", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
-            pt.typewrite("https://www.cnnbrasil.com.br/saude/", interval=.1)
-            pt.hotkey("shift", "enter")
-            sleep(1)
-            pt.typewrite("https://www.scielo.br/j/csc/a/XnfpYRR45Z4nXskC3PTnp8z/?lang=pt", interval=.1)
-            pt.hotkey("shift", "enter")
-            sleep(1)
-            pt.typewrite("https://www.lume.ufrgs.br/handle/10183/230916", interval=.1)
-            pt.hotkey("shift", "enter")
-            sleep(1)
-            pt.typewrite("https://g1.globo.com/saude/", interval=.1)
-            pt.hotkey("shift", "enter")
-            sleep(1)
-            pt.typewrite("https://edition.cnn.com/health\n", interval=.1)
 
         except Exception as e:
             print("Exception (nav_messageBox_NotFake): ", e)
+
+    def nav_vsCode(self):
+        try:
+            position = pt.locateCenterOnScreen('images/vsCode.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
+            sleep(1)
+
+        except Exception as e:
+            print("Exception (nav_vsCode): ", e)
+
+    def nav_links(self):
+        try:
+            position = pt.locateCenterOnScreen('images/links.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
+
+            pt.hotkey("ctrl", "a")
+            pt.hotkey("ctrl", "c")
+            sleep(1)
+
+        except Exception as e:
+            print("Exception (nav_links): ", e)
+
+    def nav_whatBot(self):
+        try:
+            position = pt.locateCenterOnScreen('images/whatsBot.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
+            sleep(1)
+
+        except Exception as e:
+            print("Exception (nav_whatBot): ", e)
+
+    def nav_chrome(self):
+        try:
+            position = pt.locateCenterOnScreen('images/chromePrint.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
+
+            position = pt.locateCenterOnScreen('images/paperClip.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+
+            pt.hotkey("ctrl", "v")
+            sleep(1)
+
+        except Exception as e:
+            print("Exception (nav_chrome): ", e)
+
+    def nav_sendLinks(self):
+        try:
+            position = pt.locateCenterOnScreen('images/sendMessage.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
+
+            sleep(1)
+
+        except Exception as e:
+            print("Exception (nav_sendLinks): ", e)
 
     def close_bug(self):
         try:
@@ -181,8 +215,22 @@ if __name__ == '__main__':
         verifica = bot.verificate_userAnswer()
         if(verifica == 1):
             bot.nav_messageBox_Fake()
+            bot.nav_vsCode()
+            bot.nav_links()
+            bot.nav_whatBot()
+            bot.nav_chrome()
+            bot.nav_links()
+            bot.nav_sendLinks()
+
         elif(verifica == 0):
             bot.nav_messageBox_NotFake()
+            bot.nav_vsCode()
+            bot.nav_links()
+            bot.nav_whatBot()
+            bot.nav_chrome()
+            bot.nav_links()
+            bot.nav_sendLinks()
+
         elif(verifica == 2):
             bot.close_bug()
 
