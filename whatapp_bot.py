@@ -24,13 +24,10 @@ class Whatsapp:
             
             position = 0
             position = pt.locateCenterOnScreen('images/greenDot.png', confidence=0.7)
-            if(position != 0):
-                pt.moveTo(position, duration= self.speed)
-                pt.moveRel(-100, 0, duration= self.speed)
-                pt.doubleClick(interval= self.click_speed)
-                return True
-            else:
-                return False
+            pt.moveTo(position, duration= self.speed)
+            pt.moveRel(-100, 0, duration= self.speed)
+            pt.doubleClick(interval= self.click_speed)
+
         except Exception as e:
             print("Exception (verificate_greenDots): ", e)
 
@@ -140,18 +137,17 @@ if __name__ == '__main__':
         count = 0
         bot = Whatsapp(speed=.6, click_speed=.4)
         sleep(5)
-        verifica = bot.verificate_greenDots()
+        bot.verificate_greenDots()
         sleep(3)
-        if(verifica == True):
-            bot.get_userAnswer()
-            sleep(3)
-            veri_ = bot.verificate_userAnswer()
-            if(veri_ == 1):
-                bot.nav_messageBox_Fake()
-            elif(veri_ == 0):
-                bot.nav_messageBox_NotFake()
-            elif(veri_ == 2):
-                bot.close_bug()
+        bot.get_userAnswer()
+        sleep(3)
+        verifica = bot.verificate_userAnswer()
+        if(verifica == 1):
+            bot.nav_messageBox_Fake()
+        elif(verifica == 0):
+            bot.nav_messageBox_NotFake()
+        elif(verifica == 2):
+            bot.close_bug()
 
         count = 0
         sleep(10)
