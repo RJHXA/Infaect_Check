@@ -18,16 +18,21 @@ class Whatsapp:
         self.speed = speed
         self.click_speed = click_speed
         self.message = ''
+        self.count = 0
 
     # Método para visualizar se existe uma mensagem enviada
     def verificate_greenDots(self):
         try:
             # Guarda a posição de uma mensagem enviada pelo usuário e clica nele 
+            position = 0
             position = pt.locateCenterOnScreen('images/greenDot.png', confidence=0.7)
-            pt.moveTo(position, duration= self.speed)
-            pt.moveRel(-100, 0, duration= self.speed)
-            pt.doubleClick(interval= self.click_speed)
-
+            if(position != 0):
+                pt.moveTo(position, duration= self.speed)
+                pt.moveRel(-100, 0, duration= self.speed)
+                pt.doubleClick(interval= self.click_speed)
+                return True
+            else:
+                return False
         except Exception as e:
             print("Exception (verificate_greenDots): ", e)
 
@@ -51,9 +56,10 @@ class Whatsapp:
     def verificate_userAnswer(self):
         try:
             file = open("bd.txt", "r")
-            count = 0
             list_phrase = self.message.split(" ")
             list_bd = file.readlines()
+            print(list_phrase)
+            self.count = 0
 
             # Retirar os \n das palavras no banco de dados
             for i in range(len(list_bd)):
@@ -64,17 +70,22 @@ class Whatsapp:
                 j = 0
                 while(j < len(list_bd)):
                     if(list_phrase[i] == list_bd[j]):
-                        count += 1
+                        self.count += 1
                     j += 1
 
             file.close()
-            return count
+            if(self.count > 0 and list_phrase[0] != ""):
+                return 1
+            elif(self.count == 0 and list_phrase[0] != ""):
+                return 0
+            elif(self.count == 0 and list_phrase[0] == ""):
+                return 2
 
         except Exception as e:
             print("Exception (verificate_userAnswer): ", e) 
 
     # Método para enviar o relatório caso tenha palavras chaves encontradas na frase
-    def nav_messageBox_Fake(self, count):
+    def nav_messageBox_Fake(self):
         try:
             # Guarda a posição da caixa de mensagem e clica nele 
             position = pt.locateCenterOnScreen('images/paperClip.png', confidence=0.7)
@@ -87,7 +98,7 @@ class Whatsapp:
             pt.hotkey("shift", "enter")
             sleep(1)
             pt.typewrite("Sua Frase foi verificada e apresenta ", interval=.1)
-            pt.typewrite(str(count))
+            pt.typewrite(str(self.count))
             pt.typewrite(" palavras chaves do nosso banco de dados.", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
@@ -118,20 +129,40 @@ class Whatsapp:
         except Exception as e:
             print("Exception (nav_messageBox_NotFake): ", e)
 
+    def close_bug(self):
+        try:
+            # Guarda a posição da caixa de mensagem e clica nele 
+            position = pt.locateCenterOnScreen('images/xButton.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.moveRel(10, 10, duration= self.speed)
+            pt.doubleClick(interval= self.click_speed)
+            mouse.click(Button.left, 1)
+
+        except Exception as e:
+            print("Exception (close_bug): ", e)
+
 if __name__ == '__main__':
-    # Contador para as palavras chaves
-    count = 0
-    bot = Whatsapp(speed=.6, click_speed=.4)
-    sleep(5)
-    # Verifica se tem uma mensagem nova
-    bot.verificate_greenDots()
-    sleep(3)
-    # Pega a mensagem do usuário
-    bot.get_userAnswer()
-    sleep(3)
-    # Verifica se tem no Banco de Dados
-    count = bot.verificate_userAnswer()
-    if(count > 0):
-        bot.nav_messageBox_Fake(count)
-    else:
-        bot.nav_messageBox_NotFake()
+
+    while(True):
+        # Contador para as palavras chaves
+        count = 0
+        bot = Whatsapp(speed=.6, click_speed=.4)
+        sleep(5)
+        # Verifica se tem uma mensagem nova
+        verifica = bot.verificate_greenDots()
+        sleep(3)
+        if(verifica == True):
+            # Pega a mensagem do usuário
+            bot.get_userAnswer()
+            sleep(3)
+            # Verifica se tem no Banco de Dados
+            veri_ = bot.verificate_userAnswer()
+            if(veri_ == 1):
+                bot.nav_messageBox_Fake()
+            elif(veri_ == 0):
+                bot.nav_messageBox_NotFake()
+            elif(veri_ == 2):
+                bot.close_bug()
+
+        count = 0
+        sleep(10)
