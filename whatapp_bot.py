@@ -87,6 +87,9 @@ class Whatsapp:
             pt.typewrite("*RELATORIO*", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
+            pt.typewrite("Possivelmente Falsa:", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
             pt.typewrite("Sua Frase foi verificada e apresenta ", interval=.1)
             pt.typewrite(str(self.count))
             pt.typewrite(" palavras chaves do nosso banco de dados.", interval=.1)
@@ -94,6 +97,13 @@ class Whatsapp:
             sleep(1)
             pt.typewrite("Por Favor verifique melhor sua fonte para ter mais confiabilidade na sua noticia!\n", interval=.1)
             sleep(1)
+            pt.typewrite("Fique ligado nesses seguinte links para evitar compartilhamento de Fake News:", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
+            
+            position = pt.locateCenterOnScreen('images/vsCode.png', confidence=0.7)
+            pt.moveTo(position, duration= self.speed)
+            pt.click(interval= self.click_speed)
 
         except Exception as e:
             print("Exception (nav_messageBox_Fake): ", e)
@@ -110,11 +120,30 @@ class Whatsapp:
             pt.typewrite("*RELATORIO*", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
+            pt.typewrite("Possivelmente Verdadeira:", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
             pt.typewrite("Nenhuma palavra do nosso Banco de Dados foi encontrado no seu texto.", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
-            pt.typewrite("Entretanto, tenha cuidado com todos as noticias que aparecem!\n", interval=.1)
+            pt.typewrite("Porem, tenha cuidado com todos as noticias que aparecem!\n", interval=.1)
             sleep(1)
+            pt.typewrite("Fique ligado nesses seguinte links para evitar compartilhamento de Fake News:", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
+            pt.typewrite("https://www.cnnbrasil.com.br/saude/", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
+            pt.typewrite("https://www.scielo.br/j/csc/a/XnfpYRR45Z4nXskC3PTnp8z/?lang=pt", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
+            pt.typewrite("https://www.lume.ufrgs.br/handle/10183/230916", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
+            pt.typewrite("https://g1.globo.com/saude/", interval=.1)
+            pt.hotkey("shift", "enter")
+            sleep(1)
+            pt.typewrite("https://edition.cnn.com/health\n", interval=.1)
 
         except Exception as e:
             print("Exception (nav_messageBox_NotFake): ", e)
@@ -134,7 +163,7 @@ class Whatsapp:
 if __name__ == '__main__':
 
     while(True):
-        count = 0
+
         bot = Whatsapp(speed=.6, click_speed=.4)
         sleep(5)
         bot.verificate_greenDots()
@@ -149,5 +178,4 @@ if __name__ == '__main__':
         elif(verifica == 2):
             bot.close_bug()
 
-        count = 0
         sleep(10)
