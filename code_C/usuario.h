@@ -5,7 +5,7 @@ typedef struct user {
 	char nome[20];
 	char codigo_pais[5];
 	char ddd[3];
-	char numero[9];
+	char numero[10];
 } User;
 
 void usuario();

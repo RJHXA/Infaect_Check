@@ -36,7 +36,7 @@ class Whatsapp:
             
             position = pt.locateCenterOnScreen('images/paperClip.png', confidence=0.7)
             pt.moveTo(position, duration= self.speed)
-            pt.moveRel(20, -80, duration= self.speed)
+            pt.moveRel(25, -90, duration= self.speed)
 
             mouse.click(Button.left, 3)
             sleep(self.speed)
@@ -92,7 +92,7 @@ class Whatsapp:
             sleep(1)
             pt.typewrite("Sua Frase foi verificada e apresenta ", interval=.1)
             pt.typewrite(str(self.count))
-            pt.typewrite(" palavras chaves do nosso banco de dados.", interval=.1)
+            pt.typewrite(" palavra(s) chave(s) do nosso banco de dados.", interval=.1)
             pt.hotkey("shift", "enter")
             sleep(1)
             pt.typewrite("Por Favor verifique melhor sua fonte para ter mais confiabilidade na sua noticia!\n", interval=.1)

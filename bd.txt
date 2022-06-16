@@ -42,3 +42,9 @@ kit
 Kit
 tratamento
 Tratamento
+Bicarbonato
+bicarbonato
+Mel
+mel
+Vinagre
+vinagre

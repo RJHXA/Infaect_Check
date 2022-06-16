@@ -24,3 +24,46 @@ void add(lista *lista, char nome[20], char codigo_pais[5], char ddd[3],char nume
 	lista->cauda->proximo = novoNo;
 	lista->cauda = novoNo;
 }
+
+void salvar(lista *lista)
+{
+	int tam = lista->tamanho;
+	No arrey[tam];
+
+	for (int i = 0; i < (tam); i++)
+	{
+		arrey[i] = busca(lista,i);
+	}
+
+	FILE* file = fopen("usuarios.txt","w");
+	fwrite(arrey, sizeof(No),tam,file);
+
+	fclose(file);
+}
+
+void ler (No arrey[], int tam)
+{
+	FILE* file = fopen("usuarios.txt","r");
+
+	fread(arrey,sizeof(No), tam,file);
+	fclose(file);
+}
+
+No busca(lista *lista, int index) 
+{
+	No *no = lista->cabeca;
+	int chak = 0, tam = lista->tamanho;
+	
+	for (int i = 0; i < tam; i++)
+	{
+		if (i == index)
+		{
+			break;
+		}
+		else
+		{
+			no = no->proximo;
+		}
+	}
+	return *no;
+}
