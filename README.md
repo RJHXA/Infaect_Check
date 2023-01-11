@@ -21,7 +21,7 @@ Project is created with:
 - Pyautogui
 
 ## Soluction ##
-The Team's soluction for the problem introduced is a sistem that has a database of keywords that will analyze a text and retrun if the text is possible a Fake news. Are focus is a bot on Whatsapp that will do all of this automatically. 
+The Team's soluction for the problem introduced is a system that has a database of keywords that will analyze a text and retrun if the text is possible a Fake news. Are focus is a bot on Whatsapp that will do all of this automatically. 
 
 ### lista.c and lista.h ###
 The "lista.c" file presents a linked list that was created to allocate or store system users in memory spaces. Furthermore, it is associated directly with the user file. The "lista.h" is a library that we created to organize the code.
